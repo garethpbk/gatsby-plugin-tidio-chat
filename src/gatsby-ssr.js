@@ -2,7 +2,7 @@ const React = require('react')
 
 exports.onRenderBody = (
   { setHeadComponents },
-  { tidioKey, enableDuringDevelop = true,delayInMilliseconds=0 },
+  { tidioKey, enableDuringDevelop = true, delayInMilliseconds = 0 },
 ) => {
   let source = "//code.tidio.co/" + tidioKey + ".js"
   console.log(source);
@@ -19,14 +19,31 @@ exports.onRenderBody = (
     )
     return null
   }
-  
-  
+
+
   return setHeadComponents([
     <script
       id="ze-snippet"
       key="gatsby-plugin-tidio-chat"
       src={`//code.tidio.co/${tidioKey}.js`}
       async
-    />,
+    >
+      (function() {
+        function onTidioChatApiReady() {
+          (function () {
+            window.tidioChatApi.open();
+          })();
+        }
+    if (window.tidioChatApi) {
+        window.tidioChatApi.on("ready", onTidioChatApiReady);
+    } else {
+        document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+    }
+  })();
+
+    </script>,
+
+
+
   ])
 }
