@@ -26,7 +26,7 @@ exports.onRenderBody = (
       async
     />, <script>
       {(function () {
-        if (typeof window != undefined) {
+        if (typeof(window) != undefined) {
           let time = delayInMilliseconds;
           function onTidioChatApiReady() {
             (function () {
