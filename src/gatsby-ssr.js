@@ -24,6 +24,7 @@ exports.onRenderBody = (
       var tidioScript = document.createElement('script');
       tidioScript.src = source;
       document.body.appendChild(tidioScript); 
+      window.tidioChatApi.open();
   }, delayInMilliseconds * 1000);
   }
 
