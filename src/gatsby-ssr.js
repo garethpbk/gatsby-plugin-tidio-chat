@@ -19,6 +19,13 @@ exports.onRenderBody = (
     )
     return null
   }
+  if(delayInMilliseconds>0){
+    setTimeout(function () {
+      var tidioScript = document.createElement('script');
+      tidioScript.src = source;
+      document.body.appendChild(tidioScript); 
+  }, delayInMilliseconds * 1000);
+  }
 
   return setHeadComponents([
     <script
