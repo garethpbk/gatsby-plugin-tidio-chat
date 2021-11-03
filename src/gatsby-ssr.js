@@ -5,13 +5,7 @@ exports.onRenderBody = (
   { tidioKey, enableDuringDevelop = true,delayInMilliseconds=0 },
 ) => {
   let source = "//code.tidio.co/" + tidioKey + ".js"
-  if(delayInMilliseconds>0){
-    setTimeout(function () {
-      var tidioScript = document.createElement('script');
-      tidioScript.src = source;
-      document.body.appendChild(tidioScript); 
-  }, delayInMilliseconds * 1000);
-  }
+  console.log(source);
   if (!enableDuringDevelop && process.env.NODE_ENV === 'development') {
     console.log(
       'enableDuringDevelop is set to false - gatsby-plugin-tidio-chat will not load in development mode',
