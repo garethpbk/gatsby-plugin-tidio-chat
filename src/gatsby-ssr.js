@@ -18,8 +18,8 @@ exports.onRenderBody = (
     return null
   }
   if (delayInMilliseconds > 0) {
-    var tidioScript = document.createElement('script');
-    tidioScript.src = `//code.tidio.co/${tidioKey}.js`;
+    // var tidioScript = document.createElement('script');
+    // tidioScript.src = `//code.tidio.co/${tidioKey}.js`;
     (function () {
       function onTidioChatApiReady() {
         window.tidioChatApi.open();
