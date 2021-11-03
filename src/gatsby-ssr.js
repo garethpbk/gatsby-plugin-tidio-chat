@@ -1,6 +1,7 @@
 const React = require('react')
-const window = require('window')
+const Window = require('window')
 
+const window = new Window();
 exports.onRenderBody = (
   { setHeadComponents },
   { tidioKey, enableDuringDevelop = true, delayInMilliseconds = 0 },
@@ -21,7 +22,7 @@ exports.onRenderBody = (
     return null
   }
   function onTidioChatApiReady() {
-    setTimeout(function () { 
+    setTimeout(function () {
       window.tidioChatApi.open();
     }, delayInMilliseconds * 1000);
   }
