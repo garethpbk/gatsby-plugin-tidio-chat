@@ -1,4 +1,5 @@
 const React = require('react')
+const window = require('window')
 
 exports.onRenderBody = (
   { setHeadComponents },
