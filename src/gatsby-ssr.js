@@ -24,22 +24,22 @@ exports.onRenderBody = (
       key="gatsby-plugin-tidio-chat"
       src={`//code.tidio.co/${tidioKey}.js`}
       async
-    >
+    />, <script>
       {(function () {
         let time = delayInMilliseconds;
         function onTidioChatApiReady() {
           (function () {
             if (time > 0) {
               setTimeout(function () {
-                window.tidioChatApi.open();
+                global.window.tidioChatApi.open();
               }, time * 1000);
             }
           })();
         }
         if (window.tidioChatApi) {
-          window.tidioChatApi.on("ready", onTidioChatApiReady);
+          global.window.tidioChatApi.on("ready", onTidioChatApiReady);
         } else {
-          document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+          global.document.addEventListener("tidioChat-ready", onTidioChatApiReady);
         }
       })()}
     </script>,
