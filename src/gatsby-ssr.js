@@ -2,7 +2,7 @@ const React = require('react')
 
 exports.onRenderBody = (
   { setHeadComponents },
-  { tidioKey, enableDuringDevelop = true },
+  { tidioKey, enableDuringDevelop = true, delayInMilliseconds = 0 },
 ) => {
   if (!enableDuringDevelop && process.env.NODE_ENV === 'development') {
     console.log(
@@ -10,7 +10,7 @@ exports.onRenderBody = (
     )
     return null
   }
-
+  console.log(delayInMilliseconds);
   if (!tidioKey) {
     console.log(
       'No Tidio key provided! gatsby-plugin-tidio-chat will not load. Please add tidioKey in gatsby-config.js',
