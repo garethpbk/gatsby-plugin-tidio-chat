@@ -2,7 +2,7 @@ const React = require('react')
 
 exports.onRenderBody = (
   { setHeadComponents },
-  { tidioKey, enableDuringDevelop = true,delayInMilliseconds=0 },
+  { tidioKey, enableDuringDevelop = true, delayInMilliseconds = 0 },
 ) => {
   let source = "//code.tidio.co/" + tidioKey + ".js"
   console.log(source);
@@ -19,13 +19,15 @@ exports.onRenderBody = (
     )
     return null
   }
-  if(delayInMilliseconds>0){
-    setTimeout(function () {
-      var tidioScript = document.createElement('script');
-      tidioScript.src = source;
-      document.body.appendChild(tidioScript); 
+  function onTidioChatApiReady() {
+    setTimeout(function () { 
       window.tidioChatApi.open();
-  }, delayInMilliseconds * 1000);
+    }, delayInMilliseconds * 1000);
+  }
+  if (window.tidioChatApi) {
+    window.tidioChatApi.on('ready', onTidioChatApiReady);
+  } else {
+    document.addEventListener('tidioChat-ready', onTidioChatApiReady);
   }
 
   return setHeadComponents([
