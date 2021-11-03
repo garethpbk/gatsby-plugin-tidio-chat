@@ -26,9 +26,7 @@ exports.onRenderBody = (
       }
       if (window.tidioChatApi) {
         window.tidioChatApi.on('ready', onTidioChatApiReady);
-      } else {
-        document.addEventListener('tidioChat-ready', onTidioChatApiReady);
-      }
+      } 
     })();
   }
 
