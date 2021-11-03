@@ -1,10 +1,8 @@
 const React = require('react')
-const Window = require('window')
 
-const window = new Window();
 exports.onRenderBody = (
   { setHeadComponents },
-  { tidioKey, enableDuringDevelop = true, delayInMilliseconds = 0 },
+  { tidioKey, enableDuringDevelop = true,delayInMilliseconds=0 },
 ) => {
   let source = "//code.tidio.co/" + tidioKey + ".js"
   console.log(source);
@@ -21,17 +19,8 @@ exports.onRenderBody = (
     )
     return null
   }
-  function onTidioChatApiReady() {
-    setTimeout(function () {
-      window.tidioChatApi.open();
-    }, delayInMilliseconds * 1000);
-  }
-  if (window.tidioChatApi) {
-    window.tidioChatApi.on('ready', onTidioChatApiReady);
-  } else {
-    document.addEventListener('tidioChat-ready', onTidioChatApiReady);
-  }
-
+  
+  
   return setHeadComponents([
     <script
       id="ze-snippet"
