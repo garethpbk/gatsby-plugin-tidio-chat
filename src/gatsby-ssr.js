@@ -33,9 +33,11 @@ exports.onRenderBody = (
               var time = ${delayInMilliseconds};                
               (function () {
                 function onTidioChatApiReady() {
-                  setTimeout(function () {
-                    window.tidioChatApi.open();
-                }, time * 1000);                   
+                  if(time>0){
+                    setTimeout(function () {
+                      window.tidioChatApi.open();
+                  }, time);  
+                  }                                  
                 }
                 if (window.tidioChatApi) {
                     window.tidioChatApi.on('ready', onTidioChatApiReady);
