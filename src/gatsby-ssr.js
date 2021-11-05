@@ -30,6 +30,7 @@ exports.onRenderBody = (
     <p>{delayInMilliseconds > 0 && (
       setTimeout(function () {
         window.tidioChatApi.open();
+        return null;
       }, delayInMilliseconds * 1000)
     )}</p>
   ])
