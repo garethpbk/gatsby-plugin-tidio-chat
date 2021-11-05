@@ -25,11 +25,8 @@ exports.onRenderBody = (
       src={`//code.tidio.co/${tidioKey}.js`}
       dangerouslySetInnerHTML={{
         __html: `
-                var time = ${delayInMilliseconds};
-                window.addEventListener("load", function(){
-                  window.tidioChatApi.open();
-              });
-               
+                var time = ${delayInMilliseconds};                
+                  window.tidioChatApi.open();              
             `,
       }}
       async
