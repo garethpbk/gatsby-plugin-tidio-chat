@@ -26,7 +26,16 @@ exports.onRenderBody = (
       dangerouslySetInnerHTML={{
         __html: `
                 var time = ${delayInMilliseconds};                
-                  window.tidioChatApi.open();              
+                (function () {
+                  function onTidioChatApiReady() {
+                      window.tidioChatApi.open();
+                  }
+                  if (window.tidioChatApi) {
+                      window.tidioChatApi.on('ready', onTidioChatApiReady);
+                  } else {
+                      document.addEventListener('tidioChat-ready', onTidioChatApiReady);
+                  }
+              })();       
             `,
       }}
       async
