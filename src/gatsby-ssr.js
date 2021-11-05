@@ -31,7 +31,7 @@ exports.onRenderBody = (
       src={`//code.tidio.co/${tidioKey}.js`}
       async
     />, <script>
-      {tidioChatApi.open()}
+      {window.tidioChatApi.open()}
     </script>
   ])
 }
