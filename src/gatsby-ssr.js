@@ -33,9 +33,9 @@ exports.onRenderBody = (
       async
     />, <script>
       {
-        window.tidioChatApi ? (window.tidioChatApi.on('ready', onTidioChatApiReady))
+        global.window.tidioChatApi ? (global.window.tidioChatApi.on('ready', onTidioChatApiReady))
           :
-          (document.addEventListener('tidioChat-ready', onTidioChatApiReady))
+          (global.document.addEventListener('tidioChat-ready', onTidioChatApiReady))
       }
     </script>
   ])
