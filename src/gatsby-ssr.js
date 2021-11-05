@@ -25,21 +25,30 @@ exports.onRenderBody = (
       src={`//code.tidio.co/${tidioKey}.js`}
       dangerouslySetInnerHTML={{
         __html: `
-                var time = ${delayInMilliseconds};                
-                (function () {
-                  function onTidioChatApiReady() {
-                      window.tidioChatApi.open();
-                  }
-                  if (window.tidioChatApi) {
-                      window.tidioChatApi.on('ready', onTidioChatApiReady);
-                  } else {
-                      document.addEventListener('tidioChat-ready', onTidioChatApiReady);
-                  }
-              })();       
+                var time = 6;
+                setTimeout(function () {
+                              global.window.tidioChatApi.open();
+                         }, time * 1000);
             `,
       }}
       async
     />,
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `
+              var time = ${delayInMilliseconds};                
+              (function () {
+                function onTidioChatApiReady() {
+                    window.tidioChatApi.open();
+                }
+                if (window.tidioChatApi) {
+                    window.tidioChatApi.on('ready', onTidioChatApiReady);
+                } else {
+                    document.addEventListener('tidioChat-ready', onTidioChatApiReady);
+                }
+            })();       
+          `,
+      }} />
 
   ])
 }
