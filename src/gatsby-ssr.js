@@ -1,7 +1,7 @@
 const React = require('react')
 
 exports.onRenderBody = (
-  { setHeadComponents, postBodyComponents },
+  { setHeadComponents, setPostBodyComponents },
   { tidioKey, enableDuringDevelop = true, delayInMilliseconds = 0 },
 ) => {
 
