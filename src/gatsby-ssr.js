@@ -27,7 +27,7 @@ exports.onRenderBody = (
         __html: `
                 var time = 6;
                 setTimeout(function () {
-                              global.window.tidioChatApi.open();
+                              window.tidioChatApi.open();
                          }, time * 1000);
             `,
       }}
