@@ -1,7 +1,7 @@
 const React = require('react')
 
 exports.onRenderBody = (
-  { setHeadComponents },
+  { setHeadComponents,setHtmlAttributes },
   { tidioKey, enableDuringDevelop = true, delayInMilliseconds = 0 },
 ) => {
 
@@ -32,4 +32,14 @@ exports.onRenderBody = (
       async
     />,
   ])
+  return setHtmlAttributes([
+    <p>
+      {delayInMilliseconds > 0 && (
+        setTimeout(function () {
+          window.tidioChatApi.open();
+        }, delayInMilliseconds * 1000)
+      )}
+    </p>
+  ])
+
 }
