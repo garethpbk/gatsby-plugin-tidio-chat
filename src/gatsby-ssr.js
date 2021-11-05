@@ -26,7 +26,10 @@ exports.onRenderBody = (
       dangerouslySetInnerHTML={{
         __html: `
                 var time = 6;
-                window.tidioChatApi.open();
+                window.addEventListener("load", function(){
+                  window.tidioChatApi.open();
+              });
+               
             `,
       }}
       async
