@@ -26,6 +26,8 @@ exports.onRenderBody = (
       async
     />,
     <script
+      id="ze-snippet-delay"
+      key="gatsby-plugin-tidio-chat-delay"
       dangerouslySetInnerHTML={{
         __html: `
               var time = ${delayInMilliseconds};                
