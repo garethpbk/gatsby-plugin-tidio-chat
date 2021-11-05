@@ -1,15 +1,10 @@
 const React = require('react')
 
 exports.onRenderBody = (
-  { setHeadComponents, setHtmlAttributes },
+  { setHeadComponents, postBodyComponents },
   { tidioKey, enableDuringDevelop = true, delayInMilliseconds = 0 },
 ) => {
 
-  // if (delayInMilliseconds > 0) {
-  //   setTimeout(function () {
-  //     global.window.tidioChatApi.open();
-  //   }, delayInMilliseconds * 1000);
-  // }
   if (!enableDuringDevelop && process.env.NODE_ENV === 'development') {
     console.log(
       'enableDuringDevelop is set to false - gatsby-plugin-tidio-chat will not load in development mode',
@@ -30,8 +25,12 @@ exports.onRenderBody = (
       key="gatsby-plugin-tidio-chat"
       src={`//code.tidio.co/${tidioKey}.js`}
       async
-    />, <script>
-      {global.window.tidioChatApi.open()}
-    </script>
+    />,
+  ]), postBodyComponents([
+    <p>{delayInMilliseconds > 0 && (
+      setTimeout(function () {
+        window.tidioChatApi.open();
+      }, delayInMilliseconds * 1000)
+    )}</p>
   ])
 }
