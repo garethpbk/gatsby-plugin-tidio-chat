@@ -26,12 +26,7 @@ exports.onRenderBody = (
       dangerouslySetInnerHTML={{
         __html: `
                 var time = 6;
-                window.addEventListener("load", function(){
-                  console.log("222");
-                  setTimeout(function () {
-                    window.tidioChatApi.open();
-               }, time * 1000);
-              });                
+                window.tidioChatApi.open();
             `,
       }}
       async
