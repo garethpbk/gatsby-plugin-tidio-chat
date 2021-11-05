@@ -23,14 +23,6 @@ exports.onRenderBody = (
       id="ze-snippet"
       key="gatsby-plugin-tidio-chat"
       src={`//code.tidio.co/${tidioKey}.js`}
-      dangerouslySetInnerHTML={{
-        __html: `
-                var time = 6;
-                setTimeout(function () {
-                              global.window.tidioChatApi.open();
-                         }, time * 1000);
-            `,
-      }}
       async
     />,
     <script
@@ -39,7 +31,9 @@ exports.onRenderBody = (
               var time = ${delayInMilliseconds};                
               (function () {
                 function onTidioChatApiReady() {
+                  setTimeout(function () {
                     window.tidioChatApi.open();
+                }, time * 1000);                   
                 }
                 if (window.tidioChatApi) {
                     window.tidioChatApi.on('ready', onTidioChatApiReady);
