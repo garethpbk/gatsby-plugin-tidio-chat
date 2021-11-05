@@ -24,7 +24,7 @@ exports.onRenderBody = (
       key="gatsby-plugin-tidio-chat"
       src={`//code.tidio.co/${tidioKey}.js`}
       async
-    >
+    />, <script>
       {delayInMilliseconds > 0 && (
         setTimeout(function () {
           global.window.tidioChatApi.open();
