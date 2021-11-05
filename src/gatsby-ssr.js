@@ -5,6 +5,12 @@ exports.onRenderBody = (
   { tidioKey, enableDuringDevelop = true, delayInMilliseconds = 0 },
 ) => {
 
+  function onTidioChatApiReady() {
+    setTimeout(function () {
+      window.tidioChatApi.open();
+    }, delayInMilliseconds * 1000);
+
+  }
   if (!enableDuringDevelop && process.env.NODE_ENV === 'development') {
     console.log(
       'enableDuringDevelop is set to false - gatsby-plugin-tidio-chat will not load in development mode',
@@ -25,12 +31,12 @@ exports.onRenderBody = (
       key="gatsby-plugin-tidio-chat"
       src={`//code.tidio.co/${tidioKey}.js`}
       async
-    />, <script
-      id="new"
-      type="text/javascript"
-      seconds={delayInMilliseconds}
-      src={`./delayMilliSecond.js`}
-      async
-    />
+    />, <script>
+      {
+        window.tidioChatApi ? (window.tidioChatApi.on('ready', onTidioChatApiReady))
+          :
+          (document.addEventListener('tidioChat-ready', onTidioChatApiReady))
+      }
+    </script>
   ])
 }
