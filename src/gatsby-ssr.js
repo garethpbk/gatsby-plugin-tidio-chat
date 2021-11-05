@@ -19,19 +19,12 @@ exports.onRenderBody = (
     return null
   }
 
-  return setHeadComponents([
+  return setPostBodyComponents([
     <script
       id="ze-snippet"
       key="gatsby-plugin-tidio-chat"
       src={`//code.tidio.co/${tidioKey}.js`}
       async
     />,
-  ]), postBodyComponents([
-    <p>{delayInMilliseconds > 0 && (
-      setTimeout(function () {
-        window.tidioChatApi.open();
-        return null;
-      }, delayInMilliseconds * 1000)
-    )}</p>
   ])
 }
