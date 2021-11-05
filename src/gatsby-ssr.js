@@ -19,20 +19,19 @@ exports.onRenderBody = (
   }
 
   return setHeadComponents([
-    <>
-      <script
-        id="ze-snippet"
-        key="gatsby-plugin-tidio-chat"
-        src={`//code.tidio.co/${tidioKey}.js`}
-        async
-      />
+    <script
+      id="ze-snippet"
+      key="gatsby-plugin-tidio-chat"
+      src={`//code.tidio.co/${tidioKey}.js`}
+      async
+    >
       {delayInMilliseconds > 0 && (
         setTimeout(function () {
           global.window.tidioChatApi.open();
         }, delayInMilliseconds * 1000)
-      )}    
-       
-    </>,
+      )}
+    </script>,
+
 
   ])
 }
