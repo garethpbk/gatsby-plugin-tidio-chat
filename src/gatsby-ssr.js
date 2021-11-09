@@ -31,11 +31,11 @@ exports.onRenderBody = (
       dangerouslySetInnerHTML={{
         __html: `
               var time = ${delayInMilliseconds};
-              if(time>0){
-                window.tidioChatApi.hide();
+              if(time>0){              
                 (function () {
                   function onTidioChatApiReady() {
                     if(time>0){
+                      window.tidioChatApi.hide();
                       setTimeout(function () {
                         window.tidioChatApi.show();
                     }, time);  
