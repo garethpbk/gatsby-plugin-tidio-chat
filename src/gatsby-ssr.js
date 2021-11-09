@@ -10,7 +10,6 @@ exports.onRenderBody = (
     )
     return null
   }
-  console.log(delayInMilliseconds);
   if (!tidioKey) {
     console.log(
       'No Tidio key provided! gatsby-plugin-tidio-chat will not load. Please add tidioKey in gatsby-config.js',
