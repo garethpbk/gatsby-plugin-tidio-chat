@@ -2,7 +2,7 @@ const React = require('react')
 
 exports.onRenderBody = (
   { setHeadComponents },
-  { tidioKey, enableDuringDevelop = true },
+  { tidioKey, enableDuringDevelop = true, delayInMilliseconds = 0 },
 ) => {
   if (!enableDuringDevelop && process.env.NODE_ENV === 'development') {
     console.log(
@@ -10,7 +10,6 @@ exports.onRenderBody = (
     )
     return null
   }
-
   if (!tidioKey) {
     console.log(
       'No Tidio key provided! gatsby-plugin-tidio-chat will not load. Please add tidioKey in gatsby-config.js',
@@ -25,5 +24,32 @@ exports.onRenderBody = (
       src={`//code.tidio.co/${tidioKey}.js`}
       async
     />,
+    <script
+      id="ze-snippet-delay"
+      key="gatsby-plugin-tidio-chat-delay"
+      dangerouslySetInnerHTML={{
+        __html: `
+              var time = ${delayInMilliseconds};
+              if(time>0){              
+                (function () {
+                  function onTidioChatApiReady() {
+                    if(time>0){
+                      window.tidioChatApi.hide();
+                      setTimeout(function () {
+                        window.tidioChatApi.show();
+                    }, time);  
+                    }                                  
+                  }
+                  if (window.tidioChatApi) {
+                      window.tidioChatApi.on('ready', onTidioChatApiReady);
+                  } else {
+                      document.addEventListener('tidioChat-ready', onTidioChatApiReady);
+                  }
+              })(); 
+              }                
+                    
+          `,
+      }} />
+
   ])
 }
