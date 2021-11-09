@@ -30,21 +30,25 @@ exports.onRenderBody = (
       key="gatsby-plugin-tidio-chat-delay"
       dangerouslySetInnerHTML={{
         __html: `
-              var time = ${delayInMilliseconds};                
-              (function () {
-                function onTidioChatApiReady() {
-                  if(time>0){
-                    setTimeout(function () {
-                      window.tidioChatApi.open();
-                  }, time);  
-                  }                                  
-                }
-                if (window.tidioChatApi) {
-                    window.tidioChatApi.on('ready', onTidioChatApiReady);
-                } else {
-                    document.addEventListener('tidioChat-ready', onTidioChatApiReady);
-                }
-            })();       
+              var time = ${delayInMilliseconds};
+              if(time>0){
+                window.tidioChatApi.hide();
+                (function () {
+                  function onTidioChatApiReady() {
+                    if(time>0){
+                      setTimeout(function () {
+                        window.tidioChatApi.show();
+                    }, time);  
+                    }                                  
+                  }
+                  if (window.tidioChatApi) {
+                      window.tidioChatApi.on('ready', onTidioChatApiReady);
+                  } else {
+                      document.addEventListener('tidioChat-ready', onTidioChatApiReady);
+                  }
+              })(); 
+              }                
+                    
           `,
       }} />
 
